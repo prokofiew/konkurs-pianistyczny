@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027</title>
-  <meta name="description" content="I Międzyszkolny Konkurs Pianistyczny dla uczniów szkół muzycznych I stopnia: etiuda i duet fortepianowy na 4 ręce. ZSM im. F. Chopina w Pile, 8 lutego 2027. Zgłoszenia do 15 stycznia 2027.">
+  <meta name="description"
+    content="I Międzyszkolny Konkurs Pianistyczny dla uczniów szkół muzycznych I stopnia: etiuda i duet fortepianowy na 4 ręce. Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile, 8 lutego 2027. Zgłoszenia do 15 stycznia 2027.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pl_PL">
   <meta property="og:title" content="Międzyszkolny Konkurs Pianistyczny – Piła 2027">
-  <meta property="og:description" content="Etiuda i duet fortepianowy na 4 ręce. 8 lutego 2027, ZSM im. F. Chopina w Pile. Zgłoszenia do 15 stycznia 2027.">
+  <meta property="og:description"
+    content="Etiuda i duet fortepianowy na 4 ręce. 8 lutego 2027, Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile. Zgłoszenia do 15 stycznia 2027.">
   <!-- Social preview image: update the address if the page URL is different -->
   <meta property="og:image" content="https://prokofiew.github.io/konkurs-pianistyczny/baner.jpg">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎹</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎹</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,8 +35,14 @@
       --panel: #faf8f4;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -41,9 +51,22 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent); }
-    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
-    .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    a {
+      color: var(--accent);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
     /* ---------- hero ---------- */
     .hero {
@@ -52,137 +75,598 @@
         radial-gradient(ellipse 55% 75% at 50% 0%, rgba(214, 178, 110, .32), transparent 70%),
         linear-gradient(180deg, #1f3a5f, #172d4a);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 20px; padding-bottom: 20px; }
-    .brand { color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; opacity: .9; }
-    .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; }
-    .nav ul a { color: rgba(255, 255, 255, .78); text-decoration: none; font-size: 14px; font-weight: 500; }
-    .nav ul a:hover { color: #fff; }
-    /* full-width photo; on tall screens only the top and bottom are trimmed, so the centred title stays whole */
-    .banner img { display: block; width: 100%; height: auto; max-height: 70vh; object-fit: cover; }
-    .hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding-top: 28px; padding-bottom: 32px; }
-    .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .brand {
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: .9;
+      text-wrap: balance;
+    }
+
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 26px;
+    }
+
+    .nav ul a {
+      color: rgba(255, 255, 255, .78);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav ul a:hover {
+      color: #fff;
+    }
+
+    /* full-width photo; on short screens only the bottom (piano keys) is trimmed, so the logo and title stay whole */
+    .banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     /* ---------- buttons ---------- */
-    .btn { display: inline-block; padding: 12px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; white-space: nowrap; transition: background-color .2s, border-color .2s; }
-    .btn-gold { background: var(--gold); color: #fff; }
-    .btn-gold:hover { background: var(--gold-dark); }
-    .btn-light { border: 1px solid rgba(255, 255, 255, .55); color: #fff; }
-    .btn-light:hover { background: rgba(255, 255, 255, .1); }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: var(--accent-dark); }
-    .btn-ghost { border: 1px solid var(--line); color: var(--accent); background: #fff; }
-    .btn-ghost:hover { border-color: var(--accent); }
-    .btn.disabled { opacity: .35; pointer-events: none; }
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color .2s, border-color .2s;
+    }
+
+    .btn-light {
+      border: 1px solid rgba(255, 255, 255, .55);
+      color: #fff;
+    }
+
+    .btn-light:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      color: var(--accent);
+      background: #fff;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+    }
+
+    .btn.disabled {
+      opacity: .35;
+      pointer-events: none;
+    }
 
     /* ---------- sections ---------- */
-    section { padding: 72px 0; }
-    section.alt { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .eyebrow { margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
-    h2 { margin: 0 0 22px; font-size: clamp(24px, 3.2vw, 30px); font-weight: 700; line-height: 1.2; letter-spacing: -.01em; color: var(--ink); }
-    .intro { max-width: 760px; margin: 0; font-size: 17px; line-height: 1.75; }
-    .lead { margin: 28px 0 14px; font-size: 15px; font-weight: 600; color: var(--ink); }
-    .small-note { margin: 16px 0 0; font-size: 13px; color: var(--muted); }
-    .todo { background: #fff3cd; color: #7a5b00; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+    section {
+      padding: 72px 0;
+    }
+
+    section.alt {
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(24px, 3.2vw, 30px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .lead {
+      margin: 28px 0 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .small-note {
+      margin: 16px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .todo {
+      background: #fff3cd;
+      color: #7a5b00;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
 
     /* categories + age groups */
-    .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
-    .items { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-    .items li { display: flex; align-items: center; gap: 14px; font-size: 15px; }
-    .badge { flex: 0 0 40px; height: 40px; border-radius: 10px; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 14px; font-weight: 700; }
-    .badge svg { width: 20px; height: 20px; }
-    .items .name { font-size: 16px; font-weight: 600; color: var(--ink); }
+    .panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+
+    .items {
+      list-style: none;
+      margin: 12px 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .items li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+    }
+
+    .badge {
+      flex: 0 0 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .badge svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .items .name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+    }
 
     /* key dates */
-    .dates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .tcard { display: flex; flex-direction: column; padding: 22px; background: #fff; border: 1px solid var(--line); border-radius: 14px; }
-    .cal { flex: 0 0 62px; width: 62px; margin-bottom: 16px; border-radius: 10px; overflow: hidden; text-align: center; box-shadow: 0 2px 8px rgba(27, 42, 65, .15); }
-    .cal .m { display: block; padding: 3px 0; background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-    .cal .d { display: block; padding: 8px 0 9px; background: var(--accent); color: #fff; font-size: 24px; font-weight: 700; line-height: 1; }
-    .t-title { margin: 0; font-size: 17px; font-weight: 700; color: var(--ink); }
-    .t-when { margin: 2px 0 0; font-size: 14px; font-weight: 600; color: var(--accent); }
-    .t-desc { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+    .dates {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .tcard {
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .cal {
+      flex: 0 0 62px;
+      width: 62px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(27, 42, 65, .15);
+    }
+
+    .cal .m {
+      display: block;
+      padding: 3px 0;
+      background: var(--gold);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .cal .d {
+      display: block;
+      padding: 8px 0 9px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .t-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .t-when {
+      margin: 2px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .t-desc {
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
 
     /* entry steps (automatic numbering) */
-    .steps { list-style: none; margin: 0; padding: 0; max-width: 780px; counter-reset: step; }
-    .steps li { counter-increment: step; position: relative; padding: 0 0 22px 58px; }
-    .steps li:last-child { padding-bottom: 0; }
+    .steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 780px;
+      counter-reset: step;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding: 0 0 22px 58px;
+    }
+
+    .steps li:last-child {
+      padding-bottom: 0;
+    }
+
     .steps li::before {
       content: counter(step);
-      position: absolute; left: 0; top: 0;
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--accent); color: #fff; font-size: 15px; font-weight: 700;
-      display: grid; place-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
       box-shadow: 0 0 0 5px var(--gold-soft);
     }
-    .steps li::after { content: ""; position: absolute; left: 17px; top: 44px; bottom: 4px; width: 2px; background: var(--line); }
-    .steps li:last-child::after { display: none; }
-    .step-title { display: block; padding-top: 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
-    .step-text { display: block; margin-top: 2px; font-size: 15px; }
+
+    .steps li::after {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 44px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .steps li:last-child::after {
+      display: none;
+    }
+
+    .step-title {
+      display: block;
+      padding-top: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .step-text {
+      display: block;
+      margin-top: 2px;
+      font-size: 15px;
+    }
 
     /* documents */
-    .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .doc { display: flex; flex-direction: column; padding: 22px; background: #fff; border: 1px solid var(--line); border-radius: 14px; transition: border-color .2s; }
-    .doc:hover { border-color: var(--gold); }
-    .doc .icon { width: 48px; height: 48px; margin-bottom: 16px; border-radius: 12px; background: var(--gold-soft); color: var(--accent); display: grid; place-items: center; }
-    .doc .icon svg { width: 24px; height: 24px; }
-    .doc .title { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
-    .doc .desc { flex: 1; margin: 4px 0 18px; font-size: 13px; color: var(--muted); }
-    .actions { display: flex; gap: 8px; }
-    .actions .btn { flex: 1; padding: 9px 10px; font-size: 13px; }
+    .docs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .doc {
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      transition: border-color .2s;
+    }
+
+    .doc:hover {
+      border-color: var(--gold);
+    }
+
+    .doc .icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      background: var(--gold-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+    }
+
+    .doc .icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .doc .title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .doc .desc {
+      flex: 1;
+      margin: 4px 0 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .actions .btn {
+      flex: 1;
+      padding: 9px 10px;
+      font-size: 13px;
+    }
 
     /* travel + contact */
-    .contact-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: start; }
-    .rows { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-    .rows li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; }
-    .rows b { display: block; color: var(--ink); }
-    .ri { flex: 0 0 36px; height: 36px; border-radius: 10px; background: var(--gold-soft); color: var(--accent); display: grid; place-items: center; }
-    .ri svg { width: 18px; height: 18px; }
-    .map { display: block; width: 100%; height: 240px; border: 0; border-radius: 12px; }
-    .contact { position: relative; overflow: hidden; padding: 26px 26px 40px; background: var(--accent); color: #fff; border-radius: 14px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .rows {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .rows li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 15px;
+    }
+
+    .rows b {
+      display: block;
+      color: var(--ink);
+    }
+
+    .ri {
+      flex: 0 0 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--gold-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+    }
+
+    .ri svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .map {
+      display: block;
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: 26px 26px 40px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 14px;
+    }
+
     .contact::after {
-      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px;
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 14px;
       background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .2) 0 22px, transparent 22px 26px);
     }
-    .contact .hi { margin: 0 0 14px; font-size: 14px; opacity: .85; }
-    .contact .cname { margin: 0; font-size: 20px; font-weight: 700; }
-    .contact .role { margin: 4px 0 18px; font-size: 13px; line-height: 1.5; opacity: .75; }
-    .clink { display: flex; align-items: center; gap: 10px; padding: 6px 0; color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
-    .clink svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
-    .clink:hover span { text-decoration: underline; }
+
+    .contact .hi {
+      margin: 0 0 14px;
+      font-size: 14px;
+      opacity: .85;
+    }
+
+    .contact .cname {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .contact .role {
+      margin: 4px 0 18px;
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: .75;
+    }
+
+    .clink {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .clink svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .clink:hover span {
+      text-decoration: underline;
+    }
 
     /* footer */
-    footer { padding: 28px 0; background: var(--night); color: rgba(255, 255, 255, .7); font-size: 13px; text-align: center; }
-    footer p { margin: 4px 0; }
+    footer {
+      padding: 28px 0;
+      background: var(--night);
+      color: rgba(255, 255, 255, .7);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 4px 0;
+    }
 
     /* ---------- responsive ---------- */
     @media (max-width: 760px) {
-      .nav ul { display: none; }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+
+      .nav ul {
+        gap: 22px;
+      }
     }
+
     @media (max-width: 640px) {
-      section { padding: 52px 0; }
-      .banner img { aspect-ratio: 3 / 2; } /* trims the sides so the title reads larger; it still fits whole */
-      .hero-cta { padding-top: 22px; padding-bottom: 26px; }
-      .hero-cta .btn { flex: 1; }
-      .panels, .dates, .contact-grid { grid-template-columns: 1fr; }
-      .tcard { flex-direction: row; align-items: center; gap: 16px; padding: 16px 18px; }
-      .cal { margin-bottom: 0; }
+      section {
+        padding: 52px 0;
+      }
+
+      .panels,
+      .dates,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tcard {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 18px;
+      }
+
+      .cal {
+        margin-bottom: 0;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      * { transition: none !important; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition: none !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header class="hero">
     <nav class="nav container" aria-label="Nawigacja">
-      <a class="brand" href="#">ZSM im. F. Chopina w Pile</a>
+      <a class="brand" href="#">Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile</a>
       <ul>
         <li><a href="#terminy">Terminy</a></li>
         <li><a href="#zgloszenie">Zgłoszenie</a></li>
-        <li><a href="#dokumenty">Dokumenty</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
@@ -190,11 +674,8 @@
     <h1 class="visually-hidden">Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027</h1>
 
     <div class="banner">
-      <img src="baner.jpg" width="2400" height="1200" alt="Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027">
-    </div>
-
-    <div class="container hero-cta">
-      <a class="btn btn-gold" href="#dokumenty">Zgłoszenie i regulamin</a>
+      <img src="baner.jpg" width="2400" height="1200"
+        alt="Logo Zespołu Szkół Muzycznych im. Fryderyka Chopina w Pile. Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027">
     </div>
   </header>
 
@@ -204,26 +685,44 @@
       <div class="container">
         <p class="eyebrow">O konkursie</p>
         <h2>Zapraszamy do udziału</h2>
-        <p class="intro">Zespół Szkół Muzycznych im. F. Chopina w Pile zaprasza uczniów szkół muzycznych I stopnia do udziału w I Międzyszkolnym Konkursie Pianistycznym. Pragniemy, by był dla uczniów okazją do występu w przyjaznej atmosferze, radości ze wspólnego muzykowania i poznania rówieśników z innych szkół regionu.</p>
+        <p class="intro">Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile zaprasza uczniów szkół muzycznych I
+          stopnia do
+          udziału w I Międzyszkolnym Konkursie Pianistycznym. Pragniemy, by był dla uczniów okazją do występu w
+          przyjaznej atmosferze, radości ze wspólnego muzykowania i poznania rówieśników z innych szkół regionu.</p>
 
         <p class="lead">Konkurs odbędzie się w dwóch kategoriach oraz w dwóch grupach wiekowych:</p>
         <div class="panels">
           <div class="panel">
             <p class="eyebrow">Kategorie</p>
             <ul class="items">
-              <li><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
-                <span class="name">Etiuda</span></li>
-              <li><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-                <span class="name">Duet fortepianowy na 4 ręce</span></li>
+              <li><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 18V5l12-2v13" />
+                    <circle cx="6" cy="18" r="3" />
+                    <circle cx="18" cy="16" r="3" />
+                  </svg></span>
+                <span class="name">Etiuda</span>
+              </li>
+              <li><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg></span>
+                <span class="name">Duet fortepianowy na 4 ręce</span>
+              </li>
             </ul>
           </div>
           <div class="panel">
             <p class="eyebrow">Grupy wiekowe</p>
             <ul class="items">
               <li><span class="badge">I</span>
-                <span>klasy <b>III–IV</b> cyklu 6-letniego<br>oraz klasa <b>II</b> cyklu 4-letniego</span></li>
+                <span>klasy <b>III–IV</b> cyklu 6-letniego<br>oraz klasa <b>II</b> cyklu 4-letniego</span>
+              </li>
               <li><span class="badge">II</span>
-                <span>klasy <b>V–VI</b> cyklu 6-letniego<br>oraz klasy <b>III–IV</b> cyklu 4-letniego</span></li>
+                <span>klasy <b>V–VI</b> cyklu 6-letniego<br>oraz klasy <b>III–IV</b> cyklu 4-letniego</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -248,7 +747,7 @@
             <div>
               <p class="t-title">Przesłuchania</p>
               <p class="t-when">8 lutego 2027, 9:00–18:00</p>
-              <p class="t-desc">Sala koncertowa ZSM, ul. Pocztowa 1, Piła</p>
+              <p class="t-desc">Sala koncertowa Zespołu Szkół Muzycznych im. Fryderyka Chopina, ul. Pocztowa 1, Piła</p>
             </div>
           </div>
           <div class="tcard">
@@ -260,7 +759,8 @@
             </div>
           </div>
         </div>
-        <p class="small-note"><i>Szczegółowy harmonogram przesłuchań opublikujemy na tej stronie po zamknięciu zgłoszeń.</i></p>
+        <p class="small-note"><i>Szczegółowy harmonogram przesłuchań opublikujemy na tej stronie po zamknięciu
+            zgłoszeń.</i></p>
       </div>
     </section>
 
@@ -270,15 +770,23 @@
         <h2>Jak się zgłosić</h2>
         <ol class="steps">
           <li><span class="step-title">Regulamin</span>
-            <span class="step-text">Zapoznaj się z <a href="#dokumenty">regulaminem konkursu</a>.</span></li>
+            <span class="step-text">Zapoznaj się z <a href="#dokumenty">regulaminem konkursu</a>.</span>
+          </li>
           <li><span class="step-title">Karta zgłoszenia</span>
-            <span class="step-text">Wypełnij kartę zgłoszenia.</span></li>
+            <span class="step-text">Wypełnij kartę zgłoszenia.</span>
+          </li>
           <li><span class="step-title">Dokumenty od rodziców</span>
-            <span class="step-text">Rodzic lub opiekun prawny wypełnia oświadczenie oraz zgodę na wizerunek, osobno dla każdego uczestnika (w duecie dla obojga uczniów).</span></li>
+            <span class="step-text">Rodzic lub opiekun prawny wypełnia oświadczenie oraz zgodę na wizerunek, osobno dla
+              każdego uczestnika (w duecie dla obojga uczniów).</span>
+          </li>
           <li><span class="step-title">Wysyłka</span>
-            <span class="step-text">Prześlij komplet dokumentów do <b>15 stycznia 2027</b> na adres: <span class="todo">[DO UZUPEŁNIENIA]</span></span></li>
+            <span class="step-text">Prześlij komplet dokumentów do <b>15 stycznia 2027</b> na adres: <span
+                class="todo">[DO UZUPEŁNIENIA]</span></span>
+          </li>
           <li><span class="step-title">Opłata wpisowa</span>
-            <span class="step-text"><b>30 zł</b> od ucznia za każdą kategorię. Dane do wpłaty: <span class="todo">[DO UZUPEŁNIENIA]</span></span></li>
+            <span class="step-text"><b>30 zł</b> od ucznia za każdą kategorię. Dane do wpłaty: <span class="todo">[DO
+                UZUPEŁNIENIA]</span></span>
+          </li>
         </ol>
       </div>
     </section>
@@ -288,7 +796,7 @@
         <p class="eyebrow">Do pobrania</p>
         <h2>Dokumenty</h2>
         <div class="docs" id="docs"></div>
-        <p class="small-note">Pliki otwierają się w nowej karcie.</p>
+        <p class="small-note">Pliki otworzą się w nowej karcie.</p>
       </div>
     </section>
 
@@ -298,26 +806,47 @@
           <p class="eyebrow">Jak dojechać</p>
           <h2>Dojazd</h2>
           <ul class="rows">
-            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <span><b>Tymczasowa siedziba szkoły</b>róg ul. Pocztowej 1 i Alei Piastów, Piła</span></li>
-            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span>
-              <span><b>Bezpłatny parking</b>przed budynkiem (Aleja Piastów 3), w uliczce przy ul. Pocztowej 1 lub na dziedzińcu za budynkiem szkoły (na końcu ul. Pocztowej)</span></li>
+            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg></span>
+              <span><b>Tymczasowa siedziba szkoły</b>róg ul. Pocztowej 1 i Alei Piastów, Piła</span>
+            </li>
+            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <path d="M9 17V7h4a3 3 0 0 1 0 6H9" />
+                </svg></span>
+              <span><b>Bezpłatny parking</b>przed budynkiem (Aleja Piastów 3), w uliczce przy ul. Pocztowej 1 lub na
+                dziedzińcu za budynkiem szkoły (na końcu ul. Pocztowej)</span>
+            </li>
           </ul>
-          <iframe class="map" src="https://www.google.com/maps?q=Pocztowa+1,+Pi%C5%82a&output=embed" loading="lazy" title="Mapa dojazdu do szkoły"></iframe>
+          <iframe class="map" src="https://www.google.com/maps?q=Pocztowa+1,+Pi%C5%82a&output=embed" loading="lazy"
+            title="Mapa dojazdu do szkoły"></iframe>
         </div>
 
         <div>
           <p class="eyebrow">Masz pytania?</p>
           <h2>Kontakt</h2>
           <div class="contact">
-            <p class="hi">W razie pytań chętnie pomogę:</p>
+            <p class="hi">Pytania proszę kierować do:</p>
             <p class="cname">Filip Maciborski</p>
-            <p class="role">Kierownik Sekcji Fortepianu, Akordeonu i Organów<br>ZSM im. F. Chopina w Pile</p>
+            <p class="role">Kierownik Sekcji Fortepianu, Akordeonu i Organów<br>Zespół Szkół Muzycznych im. Fryderyka
+              Chopina w Pile</p>
             <a class="clink" href="mailto:filipmaciborski@gmail.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 6-10 7L2 6" />
+              </svg>
               <span>filipmaciborski@gmail.com</span></a>
             <a class="clink" href="tel:+48888796447">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
               <span>888 796 447</span></a>
           </div>
         </div>
@@ -328,7 +857,7 @@
 
   <footer>
     <div class="container">
-      <p>Organizator: Zespół Szkół Muzycznych im. F. Chopina w Pile, Sekcja Fortepianu, Akordeonu i Organów</p>
+      <p>Organizator: Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile, Sekcja Fortepianu, Akordeonu i Organów</p>
       <p>Ostatnia aktualizacja: 10 listopada 2026</p>
     </div>
   </footer>
@@ -379,11 +908,12 @@
         '<p class="title">' + d.title + '</p>' +
         '<p class="desc">' + d.desc + '</p>' +
         '<div class="actions">' +
-          '<a class="btn btn-primary' + off + '" href="' + (l ? l.view : "#") + '" target="_blank" rel="noopener">Otwórz</a>' +
-          '<a class="btn btn-ghost' + off + '" href="' + (l ? l.download : "#") + '" target="_blank" rel="noopener">Pobierz</a>' +
+        '<a class="btn btn-primary' + off + '" href="' + (l ? l.view : "#") + '" target="_blank" rel="noopener">Otwórz</a>' +
+        '<a class="btn btn-ghost' + off + '" href="' + (l ? l.download : "#") + '" target="_blank" rel="noopener">Pobierz</a>' +
         '</div></div>';
     }).join("");
   </script>
 
 </body>
+
 </html>
