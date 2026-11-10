@@ -5,9 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0c1524">
   <title>Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027</title>
   <meta name="description"
-    content="I Międzyszkolny Konkurs Pianistyczny dla uczniów szkół muzycznych I stopnia: etiuda i duet fortepianowy na 4 ręce. Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile, 8 lutego 2027. Zgłoszenia do 15 stycznia 2027.">
+    content="Międzyszkolny Konkurs Pianistyczny dla uczniów szkół muzycznych I stopnia: etiuda i duet fortepianowy na 4 ręce. Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile, 8 lutego 2027. Zgłoszenia do 15 stycznia 2027.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pl_PL">
   <meta property="og:title" content="Międzyszkolny Konkurs Pianistyczny – Piła 2027">
@@ -19,20 +20,24 @@
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎹</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crete+Round&family=Montserrat:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --ink: #1b2a41;
       --accent: #1f3a5f;
       --accent-dark: #16304f;
-      --night: #0f1b2c;
+      --night: #0c1524;
       --gold: #b08d4c;
       --gold-dark: #957538;
+      --gold-light: #f5d98b;
       --gold-soft: #f4ede1;
       --text: #2a3342;
       --muted: #6b7280;
       --line: #e8e4dc;
       --panel: #faf8f4;
+      /* same typeface as the title on the banner */
+      --display: "Crete Round", Georgia, serif;
     }
 
     * {
@@ -68,12 +73,15 @@
       padding: 0 20px;
     }
 
-    /* ---------- hero ---------- */
-    .hero {
-      color: #fff;
-      background:
-        radial-gradient(ellipse 55% 75% at 50% 0%, rgba(214, 178, 110, .32), transparent 70%),
-        linear-gradient(180deg, #1f3a5f, #172d4a);
+    /* ---------- top bar (stays visible while scrolling) ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(12, 21, 36, .94);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
     .nav {
@@ -81,17 +89,22 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      min-height: 56px;
     }
 
     .brand {
-      color: #fff;
+      color: var(--gold-light);
+      font-family: var(--display);
+      font-size: 17px;
       text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      opacity: .9;
-      text-wrap: balance;
+      white-space: nowrap;
+      transition: opacity .25s, visibility .25s;
+    }
+
+    /* the banner already shows the title, so the bar repeats it only once the banner has scrolled away */
+    .topbar.at-top .brand {
+      opacity: 0;
+      visibility: hidden;
     }
 
     .nav ul {
@@ -99,18 +112,33 @@
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 26px;
+      gap: 4px;
     }
 
     .nav ul a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 8px;
       color: rgba(255, 255, 255, .78);
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
+      transition: color .2s, background-color .2s;
     }
 
     .nav ul a:hover {
       color: #fff;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    /* section currently being read */
+    .nav ul a[aria-current] {
+      color: var(--gold-light);
+    }
+
+    /* ---------- banner ---------- */
+    .banner {
+      background: #0b0907;
     }
 
     /* full-width photo; on short screens only the bottom (piano keys) is trimmed, so the logo and title stay whole */
@@ -184,6 +212,8 @@
     /* ---------- sections ---------- */
     section {
       padding: 72px 0;
+      /* keeps headings clear of the top bar when jumping from the menu */
+      scroll-margin-top: 36px;
     }
 
     section.alt {
@@ -192,21 +222,12 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .eyebrow {
-      margin: 0 0 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
     h2 {
-      margin: 0 0 22px;
-      font-size: clamp(24px, 3.2vw, 30px);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -.01em;
+      margin: 0 0 24px;
+      font-family: var(--display);
+      font-size: clamp(28px, 3.6vw, 36px);
+      font-weight: 400;
+      line-height: 1.15;
       color: var(--ink);
     }
 
@@ -252,9 +273,16 @@
       padding: 20px 22px;
     }
 
+    .panel-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+
     .items {
       list-style: none;
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       padding: 0;
       display: flex;
       flex-direction: column;
@@ -531,69 +559,98 @@
     .map {
       display: block;
       width: 100%;
-      height: 240px;
-      border: 0;
-      border-radius: 12px;
-    }
-
-    .contact {
-      position: relative;
-      overflow: hidden;
-      padding: 26px 26px 40px;
-      background: var(--accent);
-      color: #fff;
+      height: 280px;
+      border: 1px solid var(--line);
       border-radius: 14px;
     }
 
-    .contact::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 14px;
-      background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .2) 0 22px, transparent 22px 26px);
+    /* contact card */
+    .hi {
+      margin: 0 0 16px;
+      font-size: 15px;
     }
 
-    .contact .hi {
-      margin: 0 0 14px;
-      font-size: 14px;
-      opacity: .85;
+    .contact {
+      padding: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 1px 2px rgba(27, 42, 65, .05), 0 18px 40px -18px rgba(27, 42, 65, .28);
     }
 
-    .contact .cname {
+    .who {
+      padding: 18px 16px 22px;
+    }
+
+    .cname {
       margin: 0;
-      font-size: 20px;
-      font-weight: 700;
+      font-family: var(--display);
+      font-size: 23px;
+      line-height: 1.2;
+      color: var(--ink);
     }
 
-    .contact .role {
-      margin: 4px 0 18px;
+    .role {
+      margin: 4px 0 0;
       font-size: 13px;
       line-height: 1.5;
-      opacity: .75;
+      color: var(--muted);
+      text-wrap: balance;
     }
 
     .clink {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 6px 0;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--panel);
+      color: var(--ink);
       text-decoration: none;
+      transition: background-color .2s;
     }
 
-    .clink svg {
+    .clink+.clink {
+      margin-top: 6px;
+    }
+
+    .clink:hover {
+      background: var(--gold-soft);
+    }
+
+    .ci {
+      flex: 0 0 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+    }
+
+    .ci svg {
       width: 18px;
       height: 18px;
-      color: var(--gold);
-      flex-shrink: 0;
     }
 
-    .clink:hover span {
-      text-decoration: underline;
+    .ct {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      line-height: 1.35;
+    }
+
+    .ct small {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .ct b {
+      font-size: 15px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
     }
 
     /* footer */
@@ -615,16 +672,26 @@
 
     /* ---------- responsive ---------- */
     @media (max-width: 760px) {
+
+      /* narrow screens: the bar holds only the menu, spread across the full width */
       .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding-top: 14px;
-        padding-bottom: 14px;
+        min-height: 48px;
+        padding: 0 10px;
+      }
+
+      .brand {
+        display: none;
       }
 
       .nav ul {
-        gap: 22px;
+        flex: 1;
+        justify-content: space-between;
+        gap: 0;
+      }
+
+      .nav ul a {
+        padding: 8px 6px;
+        font-size: 13px;
       }
     }
 
@@ -665,39 +732,38 @@
 
 <body>
 
-  <header class="hero">
+  <header class="topbar at-top" id="topbar">
     <nav class="nav container" aria-label="Nawigacja">
-      <a class="brand" href="#">Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile</a>
+      <a class="brand" href="#">Międzyszkolny Konkurs Pianistyczny</a>
       <ul>
         <li><a href="#terminy">Terminy</a></li>
         <li><a href="#zgloszenie">Zgłoszenie</a></li>
+        <li><a href="#dokumenty">Dokumenty</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
-
-    <h1 class="visually-hidden">Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027</h1>
-
-    <div class="banner">
-      <img src="baner.jpg" width="2400" height="1200"
-        alt="Logo Zespołu Szkół Muzycznych im. Fryderyka Chopina w Pile. Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027">
-    </div>
   </header>
+
+  <div class="banner" id="banner">
+    <h1 class="visually-hidden">Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027</h1>
+    <img src="baner.jpg" width="2400" height="1200"
+      alt="Logo Zespołu Szkół Muzycznych im. Fryderyka Chopina w Pile. Międzyszkolny Konkurs Pianistyczny – Piła, 8 lutego 2027">
+  </div>
 
   <main>
 
     <section id="o-konkursie">
       <div class="container">
-        <p class="eyebrow">O konkursie</p>
         <h2>Zapraszamy do udziału</h2>
         <p class="intro">Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile zaprasza uczniów szkół muzycznych I
           stopnia do
-          udziału w I Międzyszkolnym Konkursie Pianistycznym. Pragniemy, by był dla uczniów okazją do występu w
+          udziału w Międzyszkolnym Konkursie Pianistycznym. Pragniemy, by był dla uczniów okazją do występu w
           przyjaznej atmosferze, radości ze wspólnego muzykowania i poznania rówieśników z innych szkół regionu.</p>
 
         <p class="lead">Konkurs odbędzie się w dwóch kategoriach oraz w dwóch grupach wiekowych:</p>
         <div class="panels">
           <div class="panel">
-            <p class="eyebrow">Kategorie</p>
+            <h3 class="panel-title">Kategorie</h3>
             <ul class="items">
               <li><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -719,7 +785,7 @@
             </ul>
           </div>
           <div class="panel">
-            <p class="eyebrow">Grupy wiekowe</p>
+            <h3 class="panel-title">Grupy wiekowe</h3>
             <ul class="items">
               <li><span class="badge">I</span>
                 <span>klasy <b>III–IV</b> cyklu 6-letniego<br>oraz klasa <b>II</b> cyklu 4-letniego</span>
@@ -735,7 +801,6 @@
 
     <section id="terminy" class="alt">
       <div class="container">
-        <p class="eyebrow">Kalendarz</p>
         <h2>Ważne terminy</h2>
         <div class="dates">
           <div class="tcard">
@@ -743,23 +808,27 @@
             <div>
               <p class="t-title">Zgłoszenia</p>
               <p class="t-when">do 15 stycznia 2027</p>
-              <p class="t-desc">Liczba miejsc ograniczona do 50 zgłoszeń</p>
+              <p class="t-desc">Tego dnia upływa termin nadsyłania zgłoszeń. Liczba miejsc ograniczona do 50
+                uczestników.</p>
             </div>
           </div>
           <div class="tcard">
             <div class="cal"><span class="m">lut</span><span class="d">8</span></div>
             <div>
-              <p class="t-title">Przesłuchania</p>
-              <p class="t-when">8 lutego 2027, 9:00–18:00</p>
-              <p class="t-desc">Sala koncertowa Zespołu Szkół Muzycznych im. Fryderyka Chopina, ul. Pocztowa 1, Piła</p>
+              <p class="t-title">Harmonogram</p>
+              <p class="t-when">29 stycznia 2027, 9:00–18:00</p>
+              <p class="t-desc">Publikacja harmonogramu konkursu oraz składu jury</p>
             </div>
           </div>
           <div class="tcard">
             <div class="cal"><span class="m">lut</span><span class="d">8</span></div>
             <div>
-              <p class="t-title">Ogłoszenie wyników</p>
-              <p class="t-when">8 lutego 2027, 18:00</p>
-              <p class="t-desc">W dniu konkursu</p>
+              <p class="t-title">Przesłuchania i wyniki</p>
+              <p class="t-when">8 lutego 2027</p>
+              <p class="t-desc">Przesłuchania - 9.00 - 17.00</p>
+              <p class="t-desc">Wyniki - 18.00 - 19.00</p>
+
+
             </div>
           </div>
         </div>
@@ -770,26 +839,27 @@
 
     <section id="zgloszenie">
       <div class="container">
-        <p class="eyebrow">Krok po kroku</p>
         <h2>Jak się zgłosić</h2>
         <ol class="steps">
           <li><span class="step-title">Regulamin</span>
             <span class="step-text">Zapoznaj się z <a href="#dokumenty">regulaminem konkursu</a>.</span>
           </li>
           <li><span class="step-title">Karta zgłoszenia</span>
-            <span class="step-text">Wypełnij kartę zgłoszenia.</span>
+            <span class="step-text">Wypełnij <a href="#dokumenty">kartę zgloszenia</a>.</span>
           </li>
           <li><span class="step-title">Dokumenty od rodziców</span>
-            <span class="step-text">Rodzic lub opiekun prawny wypełnia oświadczenie oraz zgodę na wizerunek, osobno dla
+            <span class="step-text">Rodzic lub opiekun prawny wypełnia <a href="#dokumenty">oświadczenie</a> oraz <a
+                href="#dokumenty">zgodę na wykorzystanie wizerunku</a>. Formularze należy wypełnić osobno dla
               każdego uczestnika (w duecie dla obojga uczniów).</span>
           </li>
           <li><span class="step-title">Wysyłka</span>
-            <span class="step-text">Prześlij komplet dokumentów do <b>15 stycznia 2027</b> na adres: <span
-                class="todo">[DO UZUPEŁNIENIA]</span></span>
+            <span class="step-text">Prześlij komplet dokumentów do <b>15 stycznia 2027</b> na adres:
+              sekretariat@fchopin.pila.pl</span>
           </li>
           <li><span class="step-title">Opłata wpisowa</span>
-            <span class="step-text"><b>30 zł</b> od ucznia za każdą kategorię. Dane do wpłaty: <span class="todo">[DO
-                UZUPEŁNIENIA]</span></span>
+            <span class="step-text">Wpłać wpisowe w wysokości <b>30 zł</b> od ucznia za każdą kategorię, na rachunek
+              Rady Rodziców Zespołu Szkół Muzycznych im. F. Chopina w Pile: <b>04 1090 1320 0000 0001 4650 4433</b> z
+              dopiskiem "Międzyszkolny Konkurs Pianistyczny"
           </li>
         </ol>
       </div>
@@ -797,7 +867,6 @@
 
     <section id="dokumenty" class="alt">
       <div class="container">
-        <p class="eyebrow">Do pobrania</p>
         <h2>Dokumenty</h2>
         <div class="docs" id="docs"></div>
         <p class="small-note">Pliki otworzą się w nowej karcie.</p>
@@ -807,7 +876,6 @@
     <section id="kontakt">
       <div class="container contact-grid">
         <div>
-          <p class="eyebrow">Jak dojechać</p>
           <h2>Dojazd</h2>
           <ul class="rows">
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -815,7 +883,7 @@
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg></span>
-              <span><b>Tymczasowa siedziba szkoły</b>róg ul. Pocztowej 1 i Alei Piastów, Piła</span>
+              <span><b>Tymczasowa siedziba szkoły</b>róg ul. Pocztowej 1 i Alei Piastów 3, Piła</span>
             </li>
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -831,27 +899,28 @@
         </div>
 
         <div>
-          <p class="eyebrow">Masz pytania?</p>
           <h2>Kontakt</h2>
+          <p class="hi">Pytania proszę kierować do:</p>
           <div class="contact">
-            <p class="hi">Pytania proszę kierować do:</p>
-            <p class="cname">Filip Maciborski</p>
-            <p class="role">Kierownik Sekcji Fortepianu, Akordeonu i Organów<br>Zespół Szkół Muzycznych im. Fryderyka
-              Chopina w Pile</p>
+            <div class="who">
+              <p class="cname">Filip Maciborski</p>
+              <p class="role">Kierownik Sekcji Fortepianu, Akordeonu i Organów<br>Zespół Szkół Muzycznych im.
+                Fryderyka Chopina w Pile</p>
+            </div>
             <a class="clink" href="mailto:filipmaciborski@gmail.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 6-10 7L2 6" />
-              </svg>
-              <span>filipmaciborski@gmail.com</span></a>
+              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 6-10 7L2 6" />
+                </svg></span>
+              <span class="ct"><small>E-mail</small><b>filipmaciborski@gmail.com</b></span></a>
             <a class="clink" href="tel:+48888796447">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span>888 796 447</span></a>
+              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg></span>
+              <span class="ct"><small>Telefon</small><b>888 796 447</b></span></a>
           </div>
         </div>
       </div>
@@ -919,6 +988,32 @@
         '<a class="btn btn-ghost' + off + '" href="' + (l ? l.download : "#") + '" target="_blank" rel="noopener">Pobierz</a>' +
         '</div></div>';
     }).join("");
+
+    // top bar: show the title once the banner is out of view and mark the section being read
+    const topbar = document.getElementById("topbar");
+    const banner = document.getElementById("banner");
+    const navLinks = Array.from(document.querySelectorAll(".nav ul a"));
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+    function updateTopbar() {
+      topbar.classList.toggle("at-top", banner.getBoundingClientRect().bottom > topbar.offsetHeight);
+
+      let current = "";
+      sections.forEach(function (s) {
+        if (s.getBoundingClientRect().top <= window.innerHeight * 0.4) current = s.id;
+      });
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) current = sections[sections.length - 1].id;
+
+      navLinks.forEach(function (a) {
+        if (a.getAttribute("href") === "#" + current) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+    }
+
+    window.addEventListener("scroll", updateTopbar, { passive: true });
+    window.addEventListener("resize", updateTopbar);
+    updateTopbar();
   </script>
 
 </body>
