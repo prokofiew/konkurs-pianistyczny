@@ -55,6 +55,8 @@
       background: #fff;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      /* avoids a lone word on the last line of a paragraph */
+      text-wrap: pretty;
     }
 
     a {
@@ -229,6 +231,7 @@
       font-weight: 400;
       line-height: 1.15;
       color: var(--ink);
+      text-wrap: balance;
     }
 
     .intro {
@@ -450,6 +453,18 @@
       font-size: 15px;
     }
 
+    /* bank account on its own line; on very narrow screens it breaks only between its two halves */
+    .account {
+      display: block;
+      margin: 4px 0;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .account span {
+      white-space: nowrap;
+    }
+
     /* documents */
     .docs {
       display: grid;
@@ -664,6 +679,7 @@
 
     footer p {
       margin: 0;
+      text-wrap: balance;
     }
 
     footer p+p {
@@ -825,10 +841,8 @@
             <div>
               <p class="t-title">Przesłuchania i wyniki</p>
               <p class="t-when">8 lutego 2027</p>
-              <p class="t-desc">Przesłuchania - 9.00 - 17.00</p>
-              <p class="t-desc">Wyniki - 18.00 - 19.00</p>
-
-
+              <p class="t-desc">Przesłuchania: 9.00–17.00</p>
+              <p class="t-desc">Wyniki: 18.00–19.00</p>
             </div>
           </div>
         </div>
@@ -845,7 +859,7 @@
             <span class="step-text">Zapoznaj się z <a href="#dokumenty">regulaminem konkursu</a>.</span>
           </li>
           <li><span class="step-title">Karta zgłoszenia</span>
-            <span class="step-text">Wypełnij <a href="#dokumenty">kartę zgloszenia</a>.</span>
+            <span class="step-text">Wypełnij <a href="#dokumenty">kartę zgłoszenia</a>.</span>
           </li>
           <li><span class="step-title">Dokumenty od rodziców</span>
             <span class="step-text">Rodzic lub opiekun prawny wypełnia <a href="#dokumenty">oświadczenie</a> oraz <a
@@ -858,8 +872,9 @@
           </li>
           <li><span class="step-title">Opłata wpisowa</span>
             <span class="step-text">Wpłać wpisowe w wysokości <b>30 zł</b> od ucznia za każdą kategorię, na rachunek
-              Rady Rodziców Zespołu Szkół Muzycznych im. F. Chopina w Pile: <b>04 1090 1320 0000 0001 4650 4433</b> z
-              dopiskiem "Międzyszkolny Konkurs Pianistyczny"
+              Rady Rodziców Zespołu Szkół Muzycznych im. F. Chopina w Pile:
+              <b class="account"><span>04 1090 1320 0000</span> <span>0001 4650 4433</span></b>
+              z dopiskiem „Międzyszkolny Konkurs Pianistyczny”.</span>
           </li>
         </ol>
       </div>
@@ -905,7 +920,7 @@
             <div class="who">
               <p class="cname">Filip Maciborski</p>
               <p class="role">Kierownik Sekcji Fortepianu, Akordeonu i Organów<br>Zespół Szkół Muzycznych im.
-                Fryderyka Chopina w Pile</p>
+                Fryderyka&nbsp;Chopina w Pile</p>
             </div>
             <a class="clink" href="mailto:filipmaciborski@gmail.com">
               <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -931,7 +946,7 @@
   <footer>
     <div class="container">
       <p>Organizator:<br>
-        Zespół Szkół Muzycznych im. Fryderyka Chopina w Pile<br>
+        Zespół Szkół Muzycznych im. Fryderyka&nbsp;Chopina&nbsp;w Pile<br>
         Sekcja Fortepianu, Akordeonu i Organów</p>
       <p>Ostatnia aktualizacja:<br>
         10 listopada 2026</p>
@@ -988,6 +1003,27 @@
         '<a class="btn btn-ghost' + off + '" href="' + (l ? l.download : "#") + '" target="_blank" rel="noopener">Pobierz</a>' +
         '</div></div>';
     }).join("");
+
+    // Polish typesetting: a line must not end with a one-letter word (w, z, i, a, o, u), an initial or
+    // abbreviation (F., im., ul.) or a number ("30 zł", "15 stycznia 2027"), so glue them to the next word
+    const GLUE_TO_NEXT = [
+      [/(?<=^|[\s(„])([aiouwzAIOUWZ]|\p{Lu}\.|im\.|ul\.|al\.|nr) +/gu, "$1 "],
+      [/(?<=\d) +(?=\p{L})/gu, " "],
+      [/(?<=\d\s\p{L}+) +(?=\d{4}\b)/gu, " "]
+    ];
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest("script, style") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      let t = n.nodeValue;
+      GLUE_TO_NEXT.forEach(function (rule) {
+        t = t.replace(rule[0], rule[1]);
+      });
+      if (t !== n.nodeValue) n.nodeValue = t;
+    }
 
     // top bar: show the title once the banner is out of view and mark the section being read
     const topbar = document.getElementById("topbar");
