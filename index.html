@@ -143,11 +143,12 @@
       background: #0b0907;
     }
 
-    /* full-width photo, never cropped: the logo sits at ~95% of the height, so no max-height here */
+    /* full-width photo; on short windows the bottom is trimmed (logo sits at ~79-95% of the height) */
     .banner img {
       display: block;
       width: 100%;
       height: auto;
+      max-height: 85vh;
       object-fit: cover;
       object-position: top;
     }
